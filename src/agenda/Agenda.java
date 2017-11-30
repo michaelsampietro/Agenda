@@ -20,7 +20,7 @@ public class Agenda {
         AtividadeView view = new AtividadeView();
         
         // Model
-        AtividadeModel model = new AtividadeModel ();
+        AtividadeModel model = new AtividadeModel();
         
         // Controller
         AtividadeController controller = new AtividadeController(model, view);

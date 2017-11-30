@@ -5,6 +5,8 @@
  */
 package agenda;
 
+import java.util.Iterator;
+
 /**
  *
  * @author michaelsampietro
@@ -54,10 +56,10 @@ public class AtividadeController {
     
     public void atualizaTela () {
         
-        // Or like this...
-//        System.out.println(model.atividades.get(0).getNome());
-        for(int i = 0; i < model.atividades.size(); i++) {
-            view.atualizaTela(model.atividades.get(i).getNome(), model.atividades.get(i).getData(), model.atividades.get(i).getDescricao());
+        Iterator<AtividadeModel> atividadesIterator = model.atividades.iterator();
+        while (atividadesIterator.hasNext()) {
+            AtividadeModel atividade = atividadesIterator.next();
+            view.atualizaTela(atividade.getNome(), atividade.getData(), atividade.getDescricao());
         }
     }
     

@@ -21,15 +21,6 @@ public class AtividadeModel {
     
     List<AtividadeModel> atividades = new ArrayList<AtividadeModel>();
 
-        
-//    public AtividadeModel (String nome, String data, String descricao) {
-//        // adiciona quem entrou na lista de atividades
-//        this.nome = nome;
-//        this.data = data;
-//        this.descricao = descricao;
-//        this.id += 1;   
-//    }
-
     public String getData() {
         return data;
     }
