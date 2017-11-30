@@ -5,7 +5,9 @@
  */
 package agenda;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -21,15 +23,51 @@ public class AtividadeController {
         this.view = view;
     }
     
-    public void adicionaAtividadeLista (String nome, String data, String descricao) {
+    public void adicionaAtividadeLista (List<String> lista) {        
         AtividadeModel atividade = new AtividadeModel();
-        atividade.setNome(nome);
-        atividade.setData(data);
-        atividade.setDescricao(descricao);
+        atividade.setNome(lista.get(0));
+        atividade.setData(lista.get(1));
+        atividade.setDescricao(lista.get(2));
         
         model.atividades.add(atividade);
     }
+        
+    public void editarAtividadeLista (String nomeAtividade) {
+        Iterator<AtividadeModel> atividadesIterator = model.atividades.iterator();
+        while (atividadesIterator.hasNext()) {
+            AtividadeModel atividade = atividadesIterator.next();
+            if (atividade.getNome().equals(nomeAtividade)) {
+                List<String> aux = new ArrayList<String>();
+                
+                aux = view.recebeDados();
+                
+                atividade.setNome(aux.get(0));
+                atividade.setData(aux.get(1));
+                atividade.setDescricao(aux.get(2));
+                
+                System.out.println("Atividade atualizada!");
+                view.imprimeAtividade(atividade.getNome(), atividade.getData(), atividade.getDescricao());
+
+                break;
+            }
+        }
+    }
     
+    public void deletarAtividadeLista (String nomeAtividade) {
+        Iterator<AtividadeModel> atividadesIterator = model.atividades.iterator();
+        while (atividadesIterator.hasNext()) {
+            AtividadeModel atividade = atividadesIterator.next();
+            if (atividade.getNome().equals(nomeAtividade)) {
+                atividadesIterator.remove();
+                
+                System.out.println("Atividade removida!\nLista de atividades: ");
+                view.atualizaTela(model.atividades);
+                
+                break;
+            }
+        }
+    }
+        
     public void setNomeAtividade(String nome) {
         model.setNome(nome);
     }
@@ -55,13 +93,6 @@ public class AtividadeController {
     }
     
     public void atualizaTela () {
-        
-        Iterator<AtividadeModel> atividadesIterator = model.atividades.iterator();
-        while (atividadesIterator.hasNext()) {
-            AtividadeModel atividade = atividadesIterator.next();
-            view.atualizaTela(atividade.getNome(), atividade.getData(), atividade.getDescricao());
-        }
+        view.atualizaTela(model.atividades);
     }
-    
-    
 }
