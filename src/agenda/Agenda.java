@@ -5,12 +5,14 @@
  */
 package agenda;
 
+import java.text.ParseException;
+
 /**
  *
  * @author michaelsampietro
  */
 public class Agenda {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         // Criar uma view
         AtividadeView view = new AtividadeView();
 
@@ -24,5 +26,4 @@ public class Agenda {
                 
         controller.atualizaTela();
     }
-    
 }

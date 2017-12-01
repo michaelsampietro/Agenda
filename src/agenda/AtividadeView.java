@@ -6,7 +6,10 @@
 package agenda;
 
 import static java.lang.System.exit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -24,13 +27,15 @@ public class AtividadeView {
         while (atividadesIterator.hasNext()) {
             AtividadeModel atividade = atividadesIterator.next();
             System.out.println("Nome: " + atividade.getNome());
-            System.out.println("Data: " + atividade.getData());
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                
+            System.out.println("Data: " + formato.format(atividade.getData()));
             System.out.println("Descrição: " + atividade.getDescricao() + "\n");
         }
         
     }
     
-    public void menu (AtividadeController controller, AtividadeModel model) {
+    public void menu (AtividadeController controller, AtividadeModel model) throws ParseException {
         Scanner keyboard = new Scanner(System.in);
         int opcao;
         
@@ -39,6 +44,7 @@ public class AtividadeView {
             System.out.println("1 - Criar nova atividade");
             System.out.println("2 - Editar atividade");
             System.out.println("3 - Deletar atividade");
+            System.out.println("4 - Listar atividades");
             System.out.println("0 - Encerrar programa");
             opcao = keyboard.nextInt();
 
@@ -51,6 +57,9 @@ public class AtividadeView {
                     break;
                 case 3:
                     controller.deletarAtividadeLista(deletarAtividade());
+                    break;
+                case 4:
+                    controller.atualizaTela();
                     break;
                 case 0:
                     exit(1);
@@ -116,11 +125,12 @@ public class AtividadeView {
         return nome;
     }
     
-    public void imprimeAtividade (String nome, String data, String descricao) {
+    public void imprimeAtividade (String nome, Date data, String descricao) throws ParseException {
         System.out.println("Nome: " + nome);
-        System.out.println("Data: " + data);
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                
+        System.out.println("Data: " + formato.format(data));
         System.out.println("Descrição: " + descricao + "\n");
     }
-    
-    
 }

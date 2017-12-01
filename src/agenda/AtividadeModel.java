@@ -15,17 +15,17 @@ import java.util.Date;
  */
 public class AtividadeModel {
     private String nome;
-    private String data;
+    private Date data;
     private String descricao;
     private int id = 0;
     
     List<AtividadeModel> atividades = new ArrayList<AtividadeModel>();
 
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
 
@@ -52,8 +52,5 @@ public class AtividadeModel {
     public void setNome(String nome) {
         this.nome = nome;
     }
-     
-    
-    
     
 }

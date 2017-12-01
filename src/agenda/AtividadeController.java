@@ -5,7 +5,10 @@
  */
 package agenda;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,16 +26,18 @@ public class AtividadeController {
         this.view = view;
     }
     
-    public void adicionaAtividadeLista (List<String> lista) {        
+    public void adicionaAtividadeLista (List<String> lista) throws ParseException {        
         AtividadeModel atividade = new AtividadeModel();
         atividade.setNome(lista.get(0));
-        atividade.setData(lista.get(1));
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataFormatada = formato.parse(lista.get(1));
+        atividade.setData(dataFormatada);
         atividade.setDescricao(lista.get(2));
         
         model.atividades.add(atividade);
     }
         
-    public void editarAtividadeLista (String nomeAtividade) {
+    public void editarAtividadeLista (String nomeAtividade) throws ParseException {
         Iterator<AtividadeModel> atividadesIterator = model.atividades.iterator();
         while (atividadesIterator.hasNext()) {
             AtividadeModel atividade = atividadesIterator.next();
@@ -42,7 +47,11 @@ public class AtividadeController {
                 aux = view.recebeDados();
                 
                 atividade.setNome(aux.get(0));
-                atividade.setData(aux.get(1));
+                
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                Date dataFormatada = formato.parse(aux.get(1));
+                atividade.setData(dataFormatada);
+                
                 atividade.setDescricao(aux.get(2));
                 
                 System.out.println("Atividade atualizada!");
@@ -72,7 +81,7 @@ public class AtividadeController {
         model.setNome(nome);
     }
     
-    public void setDataAtividade (String data) {
+    public void setDataAtividade (Date data) {
         model.setData(data);
     }
     
@@ -84,7 +93,7 @@ public class AtividadeController {
         return model.getNome();
     }
     
-    public String getDataAtividade () {
+    public Date getDataAtividade () {
         return model.getData();
     }
     
