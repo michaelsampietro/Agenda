@@ -19,7 +19,7 @@ import java.util.List;
 public class AtividadeController {
     
     AtividadeModel model;
-     AtividadeView view;
+    AtividadeView view;
     
     public AtividadeController (AtividadeModel model, AtividadeView view) { 
         this.model = model;
