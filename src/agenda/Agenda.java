@@ -18,9 +18,12 @@ public class Agenda {
 
         // Model
         AtividadeModel model = new AtividadeModel();
+        
+        // Service
+        AtividadeService service = new AtividadeService(model);
 
         // Controller
-        AtividadeController controller = new AtividadeController(model, view);
+        AtividadeController controller = new AtividadeController(model, view, service);
                        
         view.menu(controller, model);
                 

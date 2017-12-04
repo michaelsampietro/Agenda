@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -77,7 +78,7 @@ public class AtividadeView {
         String nome = keyboard.nextLine();
         saida.add(nome);
         
-        System.out.println("Data da atividade:");
+        System.out.println("Data da atividade: (Ex: 12/12/2012)");
         String data = keyboard.nextLine();
         saida.add(data);
         
@@ -88,41 +89,55 @@ public class AtividadeView {
         return saida;
     }
       
-    public String editarAtividade () {
+    public List<String> editarAtividade () {
         Scanner keyboard = new Scanner(System.in);        
         
         System.out.println("Qual o nome da atividade que deseja editar?");
         String nome = keyboard.nextLine();
         
-        return nome;
+        System.out.println("Data da atividade que deseja editar?");
+        String data = keyboard.nextLine();
+        
+        List<String> informacoes = new ArrayList<String>();
+        informacoes.add(nome);
+        informacoes.add(data);
+        
+        return informacoes;
     }
     
     public List<String> recebeDados () {
         Scanner keyboard = new Scanner(System.in); 
         List<String> saida = new ArrayList<String>();
         
-        System.out.println("Nome: ");
+        System.out.println("Novo nome: ");
         String nome = keyboard.nextLine();
         saida.add(nome);
         
-        System.out.println("Data: ");
+        System.out.println("Nova data: ");
         String data = keyboard.nextLine();
         saida.add(data);
         
-        System.out.println("Descrição: ");
+        System.out.println("Nova descrição: ");
         String descricao = keyboard.nextLine();
         saida.add(descricao);
         
         return saida;
     }
     
-    public String deletarAtividade () {
+    public List<String> deletarAtividade () {
         Scanner keyboard = new Scanner(System.in);        
         
         System.out.println("Qual o nome da atividade que deseja deletar?");
         String nome = keyboard.nextLine();
         
-        return nome;
+        System.out.println("Data da atividade a ser deletada:");
+        String data = keyboard.nextLine();
+        
+        List<String> informacoes = new ArrayList<String>();
+        informacoes.add(nome);
+        informacoes.add(data);
+        
+        return informacoes;
     }
     
     public void imprimeAtividade (String nome, Date data, String descricao) throws ParseException {
